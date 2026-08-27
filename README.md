@@ -223,9 +223,10 @@ python main.py
 
 2026.8.28
 
-- 一个很粗糙的ai生成的小玩意QWQ（主要是用了dsv4flash）。可能优化不是很好，还有一堆神秘bug，ui也丑
+- 一个很糙的ai生成的小玩意QWQ（主要是用了dsv4flash）。可能优化不是很好，还有一堆神秘bug，ui也丑
+- 一旁的组件也没有仔细的分类，而且，目前还只有mania的skin.ini编辑功能和展示。我对其他模式不太了解，所以就没有弄出来
 - 选歌界面的预览和成绩结算的预览没有搞出来，这些组件的摆放有点难搞，如果之后有时间的话就弄一下。估计也没什么时间了，如果有大佬接力的话万分感谢。
-- 如果有什么建议的话也欢迎提出。
+- 如果有什么建议的话也欢迎提出，谢谢各位
 
 ---
 
@@ -249,7 +250,7 @@ e:\trae\osuskin\
 ├── run.bat              一键启动脚本（自动建 .venv、装依赖并运行）
 ├── osu_skin_tool.spec    PyInstaller 打包配置
 ├── README.md            本文件（使用说明 + 开发者修改指南）
-└── .gitignore           git 忽略规则（不上传 settings/.venv/build/dist 等）
+└── .gitignore           git 忽略规则
 ```
 
 ## 依赖关系
@@ -304,8 +305,6 @@ PyInstaller 打包配置文件，关键参数：
 - `console=False`：打包为窗口程序，不弹出命令行黑框
 - `excludes`：排除 unittest、pydoc 等无需打包的模块以减小体积
 - 输出文件名：`OsuSkinMaker.exe`
-
-> `.venv/`、`build/`、`dist/`、`__pycache__/`、`settings/`、`备忘录.txt` 等运行时生成目录与个人文档均已被 `.gitignore` 忽略、不进 git 仓库，此处不再展开。
 
 ---
 
