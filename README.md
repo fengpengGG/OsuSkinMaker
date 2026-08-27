@@ -1,6 +1,8 @@
 # OsuSkinMaker v0.01
 
 一个集 **游玩预览**、**元素管理**、**skin.ini 编辑**于一体的 osu! mania 皮肤制作 GUI 工具。
+
+**使用的话要备份皮肤文件，备份，备份，备份！！！**
 <img width="853" height="504" alt="image" src="https://github.com/user-attachments/assets/939e8e58-f2cd-452a-a250-6234379b2ffa" />
 
 ---
