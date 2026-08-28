@@ -1,4 +1,4 @@
-# OsuSkinMaker v0.01
+# OsuSkinMaker v0.0.3
 
 一个集 **游玩预览**、**元素管理**、**skin.ini 编辑**于一体的 osu! mania 皮肤制作 GUI 工具。
 
@@ -80,6 +80,9 @@ python main.py
   - 开启：舞台、按键、音符、判定等组件缺失时以默认样式显示
   - 关闭：则不显示这些缺失组件（连击图为可选装饰，缺失时一直不绘制）
 - **点击选中游玩预览组件**：开启后可在预览画面直接点击选中某个组件，右侧元素管理会联动选中对应的元素；单击选中最上层，双击切换到被遮挡的下一层（循环）
+- **元素管理按当前预览界面分类显示**（默认开启）：
+  - 开启：元素面板只显示当前界面（游玩/暂停/失败/结算/选歌）的元素 + 所有界面通用的元素
+  - 关闭：任意界面都显示全部元素（仍保持树状分组结构，不改变分类，只是展示全部）
 - 弹窗支持自由缩放，内容超出时右侧出现滚动条（滚轮滚动）
 
 ## 记忆功能
@@ -87,9 +90,10 @@ python main.py
 程序把以下内容记录到 **`settings/` 文件夹**下的 `settings.json`（exe 版记录在 exe 同目录），下次启动自动恢复：
 
 - 上次编辑的皮肤文件夹（打开/新建时记录）
-- 主题、编辑方式、导入 @2x 策略、缺失组件默认显示开关、点击选中预览组件开关
+- 主题、编辑方式、导入 @2x 策略、缺失组件默认显示开关、点击选中预览组件开关、"按当前预览界面分类显示"开关
 - 窗口大小/位置/最大化状态，以及主窗口、元素管理面板的分隔条比例
-- **预览状态**：最后一次的界面（游玩界面 / 暂停页面等）、显示开关（背景图/连击图/警告箭头/跳过按钮）、画幅比例、自定义分数/acc/连击/中间评分
+- **元素管理**：分类树的展开/收缩状态（切换界面、导入/替换组件、重启后都会保持，仅记住你手动展开的那一层）
+- **预览状态**：最后一次的界面（游玩界面 / 暂停界面 / 失败界面 / 成绩结算界面 / 选歌界面）、显示开关（背景图/连击图/警告箭头/跳过按钮）、画幅比例、自定义分数/acc/连击/中间评分
 
 ## 素材文件编码与保存安全
 
@@ -101,11 +105,11 @@ python main.py
 ## 左侧：游玩预览
 
 ### 控制栏
-- **页面**：下拉选择预览的界面
+- **界面**：下拉选择预览的界面
   - **游玩界面**：正常游玩画面
-  - **暂停页面**：切换为暂停界面（压暗游玩画面 + 覆盖层 + 三个按钮），右侧元素管理同步只显示 `pause-*` 相关元素
-  - **失败页面**：独立的失败界面（fail-background 铺满 + 重试/返回两个按钮，不绘制游玩画面）
-  - **成绩结算页面 / 选歌页面**：下拉中可选中，但画面切换尚未实现（选中后画面不变，仅元素筛选可受其影响）
+  - **暂停界面**：压暗游玩画面 + 覆盖层 + 三个按钮，右侧元素管理同步只显示 `pause-*` 相关元素
+  - **失败界面**：独立的失败界面（fail-background 铺满 + 重试/返回两个按钮，不绘制游玩画面）
+  - **成绩结算界面 / 选歌界面**：下拉中可选中，但画面切换尚未实现（选中后画面不变，仅元素筛选可受其影响）
   
   **比例**：16:9 / 16:10 切换
   
@@ -133,7 +137,7 @@ python main.py
 在"设置"里开启"点击选中游玩预览组件"后：
 - **单击**：选中点击位置最上层的组件，右侧元素管理联动选中对应元素
 - **双击**：选中被最上层遮挡的下一层组件（如被舞台底部盖住的音符），继续双击逐层向下，到底后循环回顶层
-- 在暂停页面下点击 overlay/按钮时，页面会保持暂停界面不动，正常选中对应的暂停元素
+- 在暂停界面下点击 overlay/按钮时，界面会保持暂停界面不动，正常选中对应的暂停元素
 
 ---
 
@@ -217,7 +221,7 @@ python main.py
 - **长条身体样式**：`0=拉伸`（单图拉伸）、`1=从顶`（按贴图顶部平铺）、`2=从底`（按贴图底部平铺，顶端不留透明空隙）
 - 明暗主题切换会保留所有已打开皮肤与当前编辑状态
 - **暂停界面**：切换时先把游玩画面压暗约 70%，再叠加 `pause-overlay`（不拉伸、按原生尺寸 ÷1.6 居中）与三个按钮（继续/重试/返回，SD 纵坐标 224/400/576 → x480 的 140/250/360）
-- 页面类型、显示开关、画幅比例与自定义数值都会在退出时记录，下次启动自动恢复
+- 界面类型、显示开关、画幅比例与自定义数值都会在退出时记录，下次启动自动恢复
 - 预览里的坐标、尺寸、图层顺序都尽量贴近 osu! 官方规范，但**预览 ≠ 实机**。
 
 ---
@@ -240,7 +244,7 @@ python main.py
 ```
 e:\trae\osuskin\
 ├── main.py              入口（仅调用 gui.run()）
-├── gui.py               主界面（界面层，约 2947 行）
+├── gui.py               主界面（界面层，约 2798 行）
 ├── components.py        可复用 UI 组件（滚动容器、颜色工具、字体后缀）
 ├── theme.py             主题样式（配色表 + setup_style + DPI）
 ├── app_settings.py      应用设置持久化（settings.json 读写与迁移）
@@ -255,6 +259,11 @@ e:\trae\osuskin\
 ├── README.md            本文件（使用说明 + 开发者修改指南）
 └── .gitignore           git 忽略规则
 ```
+另有不入版本库的目录（均在 `.gitignore` 中忽略）：
+- `settings/`：应用设置（`settings.json`，exe 版写在 exe 同目录）
+- `temp/`：临时文件（查询核对脚本、缓存等）
+- `.venv/`：本地虚拟环境
+- `build/`、`dist/`：PyInstaller 中间产物与打包输出
 
 ## 依赖关系
 
@@ -294,7 +303,7 @@ pip install -r requirements.txt
 1. 检查 `.venv` 虚拟环境是否存在，不存在则自动创建
 2. 安装 Pillow + PyInstaller
 3. 用 PyInstaller 按 `osu_skin_tool.spec` 配置打包
-4. 输出到 `dist\osu_skin_tool.exe`
+4. 输出到 `dist\OsuSkinMaker.exe`
 
 > 新拆分的模块（theme/components/app_settings/utilities）会被 gui.py 自动 import，PyInstaller 会一并打包，无需改 spec。
 
@@ -325,20 +334,39 @@ if __name__ == "__main__":
 
 ## 2. catalog.py — 元素目录
 
-**作用**：定义所有 osu! 皮肤元素的中文描述和元数据。
+**作用**：定义所有 osu! 皮肤元素的中文描述、模式分组与界面归属元数据。
 
 ### 关键结构
 
 ```python
 class Element:
     filename: str       # 基础文件名，如 "mania-hit300g"
-    category: str       # 分类，如 "判定 (Judgement)"
+    category: str       # 功能分类，如 "判定 (Judgement)"（组内唯一）
     description: str    # 中文说明
+    group: str          # 模式分组（一级树），如 "osu!mania" / "通用元素"
     animatable: bool    # 是否支持帧动画
     size: str           # 建议尺寸
     blend: str          # 混合模式
     origin: str         # 原点
+    screens: tuple      # 所属界面，如 ("游玩",)；含 "通用" 则所有界面都显示
 ```
+
+### 分类体系（两级树）
+
+元素按 **模式分组 → 功能分类** 两级组织，`GROUPS` 字典定义分组的顺序与各自的分类列表：
+
+| 分组 | 功能分类 |
+|------|---------|
+| 通用元素 | 光标 (Cursor)、游玩界面 (Play)、倒计时 (Countdown)、按钮 (Button)、主菜单 (Menu)、暂停界面 (Pause)、失败界面 (Fail)、结算 (Ranking)、输入覆盖层 (Input Overlay)、分数与准确度 (Score & Acc)、血条 (Scorebar) |
+| 选歌元素 | 游戏模式图标 (Mode Icon)、选歌界面 UI (Song Select)、模组图标 (Mod Icon)、结算等级 (Rank Small) |
+| osu!（标准） | 连击 (Comboburst)、打击圈 (Hitcircle)、打击判定 (Hitburst)、滑条 (Slider)、转盘 (Spinner)、粒子 (Particle)、灯光 (Lighting) |
+| osu!mania | 音符 (Note)、长条头 (Hold Head)、长条身 (Hold Body)、长条尾 (Hold Tail)、按键 (Key)、判定 (Judgement)、舞台 (Stage)、灯光 (Lighting)、连击 (Comboburst)、其它 (Other) |
+| osu!taiko（太鼓） | 太鼓区域 (Arena)、音符 (Note)、滚打 (Roll)、摇器 (Spinner)、太鼓小人 (Pippidon)、打击结果 (Hit)、游玩区域 (Field) |
+| osu!catch（接水果） | 水果 (Fruit)、连击 (Comboburst) |
+
+### 界面过滤（screens）
+
+元素面板按当前预览界面过滤元素：每个元素通过 `screens` 字段标注所属界面（游玩/暂停/失败/结算/选歌），含 `"通用"` 的元素在所有界面都显示。页面下拉值 → 界面名映射在 `PAGE_SCREEN` 中定义。
 
 ### 如何添加新元素
 
@@ -348,13 +376,16 @@ class Element:
 Element("新文件名", "分类名", "中文说明", True/False, "", "Normal", "Centre"),
 ```
 
+若元素只属于某个特定界面，追加 `screens=("界面名",)`；若所有界面都显示，追加 `screens=("通用",)`。
+
 ### 如何修改分类
 
-在 `CATEGORIES` 列表调整顺序或增删分类名，然后在 `ELEMENTS` 中把对应元素的 `category` 改为新分类名。
+在 `GROUPS` 字典调整分组顺序或增删分类名，然后把 `ELEMENTS` 中对应元素的 `category`（以及需要时 `group`）改为新值。
 
 ### 工具函数
 
-- `by_category()` → `{分类名: [Element, ...]}`
+- `by_group()` → `{分组: {分类: [Element, ...]}}`，两级嵌套结构（GUI 元素面板按此渲染三级树）
+- `by_category()` → `{分类名: [Element, ...]}`（兼容旧接口）
 - `by_name(filename)` → 按文件名查找 Element
 
 ---
@@ -537,10 +568,10 @@ class SkinManager:
 | 1-50 | 导入 | 标准库、tkinter、PIL（HAS_PIL）、各内部模块 |
 | 51-339 | **`Form` 类** | 通用表单引擎 |
 | 340-487 | **`ManiaEditor` 类** | Mania 编辑器（每列表单 + reset） |
-| 488-1038 | **`ElementPanel` 类** | 元素管理面板（浏览/添加/删除/替换/预览） |
-| 1039-2412 | **`StagePreview` 类** | 游玩/暂停预览（最大模块） |
-| 2413-2946 | **`App` 类** | 主窗口 |
-| 2947 | `run()` | 程序入口（enable_dpi_awareness → setup_style → App.mainloop） |
+| 488-1094 | **`ElementPanel` 类** | 元素管理面板（浏览/添加/删除/替换/预览） |
+| 1095-2494 | **`StagePreview` 类** | 游玩/暂停/结算/选歌预览（最大模块） |
+| 2495-3052 | **`App` 类** | 主窗口 |
+| 3053 | `run()` | 程序入口（enable_dpi_awareness → setup_style → App.mainloop） |
 
 > 行号随维护变动，以最新为准；下表用方法名定位更可靠。
 
@@ -610,9 +641,9 @@ self._loading      # 布尔值              load() 期间不触发回调
 10. 舞台底部装饰（stage-bottom，绘制于左右舞台之上以覆盖其边缘）
 11. 连击图（comboburst）
 12. **HUD**：分数 → acc → 连击计数 → 判定评分
-13. 游玩界面右下角跳过按钮（play-skip，仅"游玩界面"页面绘制）
+13. 游玩界面右下角跳过按钮（play-skip，仅"游玩界面"界面绘制）
 
-> 选中下拉"暂停页面"时，在游玩画面之上叠加：先压暗约 70% → `pause-overlay`（原生尺寸 ÷1.6 居中，不拉伸）→ 三个按钮（`pause-continue`/`pause-retry`/`pause-back`，SD 纵坐标 224/400/576 → x480 的 140/250/360）。
+> 选中下拉"暂停界面"时，在游玩画面之上叠加：先压暗约 70% → `pause-overlay`（原生尺寸 ÷1.6 居中，不拉伸）→ 三个按钮（`pause-continue`/`pause-retry`/`pause-back`，SD 纵坐标 224/400/576 → x480 的 140/250/360）。
 
 **性能优化**：
 - `refresh()` 防抖：200ms 内多次刷新合并为一次（`_refresh_timer`）
@@ -630,15 +661,14 @@ self._loading      # 布尔值              load() 期间不触发回调
 - **开启**：舞台、按键、音符、判定评分等缺失时以默认样式占位显示（默认组件保持原样）
 - **关闭**：这些缺失组件完全不绘制；连击图为可选装饰，缺失时一直不绘制占位
 
-**页面切换与元素筛选**：`page_var`（预览上方下拉）驱动预览重绘与元素面板筛选——选中"暂停页面"时只显示 `pause-*` 元素。
+**页面切换与元素筛选**：`page_var`（预览上方下拉）驱动预览重绘与元素面板筛选——按当前界面只显示对应元素。该筛选由设置中"元素管理按当前预览界面分类显示"开关控制（关闭则显示全部元素）。
 
 **点击联动选中**（设置中"点击选中游玩预览组件"开关开启时）：
 - 渲染时给各组件画布项打 `pick:<元素名>` 标签
 - 单击选中点击位置**最顶层**组件；双击选中被**下一层**遮挡的组件，循环切换
 - 点击区域用 `find_overlapping` 命中（底层→顶层顺序），由 `_pick_stack`/`_pick_idx` 管理层级
-- 暂停页面下点击联动**不切回游玩界面**（页面固定）
-
-**预览状态持久化**：`_restore_preview_settings()` 启动时恢复上次退出时的页面类型、显示开关、画幅比例与自定义数值；`App._persist_settings()` 在关闭窗口时保存（`preview_page`/`preview_bg`/`preview_cb`/`preview_warning`/`preview_skip`/`preview_aspect`/`preview_score`/`preview_acc`/`preview_combo`/`preview_hit`）。
+- 暂停界面下点击联动**不切回游玩界面**（界面固定）
+**预览状态持久化**：`_restore_preview_settings()` 启动时恢复上次退出时的界面类型、显示开关、画幅比例与自定义数值；`App._persist_settings()` 在关闭窗口时保存（`preview_page`/`preview_bg`/`preview_cb`/`preview_warning`/`preview_skip`/`preview_aspect`/`preview_score`/`preview_acc`/`preview_combo`/`preview_hit`）。元素面板展开/收缩状态由 `ElementPanel._save_open_state()` 保存到 `element_open_state`。
 
 **倒置（UpsideDown）**：舞台坐标系 Y 镜像；按键/音符按 `KeyFlipWhenUpsideDown`/`NoteFlipWhenUpsideDown` 垂直翻转；左右舞台/底部图像**不翻转**，锚点适配（左右舞台锚视觉顶部、底部舞台锚 N 从顶悬挂）。
 
@@ -723,7 +753,7 @@ HUD 元素（分数、acc、连击、血条）的 size 计算中都有 `/ 1.6` �
 
 ### 修改元素目录
 
-编辑 `catalog.py` 的 `ELEMENTS` 列表和 `CATEGORIES` 列表。
+编辑 `catalog.py` 的 `ELEMENTS` 列表和 `GROUPS` 字典（后者是两级分组结构与顺序的唯一来源；`CATEGORIES` 由 `GROUPS` 派生，无需手改）。新增/调整界面归属用 `screens` 字段。
 
 ### 修改素材读取优先级
 
@@ -750,4 +780,4 @@ HUD 元素（分数、acc、连击、血条）的 size 计算中都有 `/ 1.6` �
 - **警告箭头**（mania-warningarrow，`warning_var`）
 - **跳过按钮**（play-skip，`skip_var`）
 
-以上页面类型、显示开关、画幅比例与自定义数值都会随设置持久化，退出后下次启动自动恢复。
+以上界面类型、显示开关、画幅比例与自定义数值都会随设置持久化，退出后下次启动自动恢复。

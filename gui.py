@@ -549,6 +549,8 @@ class ElementPanel(ttk.Frame):
                                  wraplength=max(120, ev.width - 24)))
 
     def refresh(self):
+        # 重建前抓取当前可见树的展开状态（覆盖切换界面/导入/替换等刷新）
+        self._save_open_state()
         self.tree.delete(*self.tree.get_children())
         self._expand_map = {}
         mgr = self.app.manager
@@ -622,17 +624,33 @@ class ElementPanel(ttk.Frame):
                     self.tree.insert(cat_id, "end", iid=e.filename, text=e.filename,
                                      values=(state,), tags=tuple(tags))
 
-    def _on_open_close(self, event):
-        """元素树分类节点展开/收缩时，记录并持久化展开状态。"""
-        iid = self.tree.focus()
-        key = self._expand_map.get(iid)
-        if not key:
-            return
+    def _save_open_state(self):
+        """将当前可见节点（组/分类）的展开状态合并进持久化字典。
+
+        要点：
+        - 不使用 self.tree.focus()：点击展开箭头时焦点未必落在该节点，会漏记。
+        - 采用“合并而非覆盖”：只更新当前树中存在的节点，保留其它分组此前
+          保存的状态。否则切到某个界面时被隐藏分组的折叠状态会被丢弃，且程序
+          刚启动第一次 refresh（树为空）会把已持久化状态整体清空。
+        """
         st = self.app.settings
         state = dict(st.get("element_open_state", {}))
-        state[key] = bool(self.tree.item(iid, "open"))
-        st["element_open_state"] = state
-        save_settings(st)
+        changed = False
+        for iid, key in self._expand_map.items():
+            try:
+                val = bool(self.tree.item(iid, "open"))
+            except tk.TclError:
+                continue
+            if state.get(key) != val:
+                state[key] = val
+                changed = True
+        if changed:
+            st["element_open_state"] = state
+            save_settings(st)
+
+    def _on_open_close(self, event):
+        """元素树分类节点展开/收缩时，记录并持久化展开状态。"""
+        self._save_open_state()
 
     def select_element(self, filename):
         """编程选中列表中的指定元素（由游玩预览点击联动触发）。"""
@@ -2484,7 +2502,7 @@ class App(tk.Tk):
             setup_style(self, theme)
         else:
             setup_style(self)
-        self.title("OsuSkinMaker v0.0.2")
+        self.title("OsuSkinMaker v0.0.3")
         self.minsize(1000, 680)
         self.skin_folder = None
         self.ini = SkinIni()
@@ -2626,7 +2644,10 @@ class App(tk.Tk):
         save_settings(self.settings)
 
     def _on_close(self):
-        """关闭窗口：先保存设置再退出。"""
+        """关闭窗口：先保存展开状态与设置再退出。"""
+        ep = getattr(self, "element_panel", None)
+        if ep is not None:
+            ep._save_open_state()
         self._persist_settings()
         self.destroy()
 
