@@ -22,6 +22,7 @@ skill/
 # ---- 临时 / 个人文件 ----
 _tmp_interface.md
 _tx_cmp.txt
+temp/
 
 # ---- 不随仓库分发的中文文档（保留 README.md 即可）----
 使用说明.md
