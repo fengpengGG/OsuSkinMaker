@@ -33,7 +33,7 @@ from utilities import (
 )
 
 # catalog 仅 ElementPanel 使用，按需导入
-from catalog import by_category, by_name
+from catalog import by_group, by_name, PAGE_SCREEN
 
 try:
     from PIL import Image, ImageChops, ImageTk
@@ -489,6 +489,7 @@ class ElementPanel(ttk.Frame):
     def __init__(self, parent, app):
         super().__init__(parent)
         self.app = app
+        self._expand_map = {}   # iid → 节点键（group 或 "group/category"），用于记住展开/收缩
         self._build()
 
     def _build(self):
@@ -530,6 +531,9 @@ class ElementPanel(ttk.Frame):
         vsb.pack(side="right", fill="y")
         self.tree.bind("<<TreeviewSelect>>", self._on_select)
         self.tree.bind("<Double-1>", self._on_double_click)
+        # 记住分类节点的展开/收缩状态
+        self.tree.bind("<<TreeviewOpen>>", self._on_open_close)
+        self.tree.bind("<<TreeviewClose>>", self._on_open_close)
 
         ttk.Label(right, text="预览", style="CardTitle.TLabel").pack(anchor="w", pady=(0, 4))
         self.preview = ttk.Frame(right, style="Card.TFrame")
@@ -546,6 +550,7 @@ class ElementPanel(ttk.Frame):
 
     def refresh(self):
         self.tree.delete(*self.tree.get_children())
+        self._expand_map = {}
         mgr = self.app.manager
         if mgr is None:
             self.summary_var.set("未加载皮肤")
@@ -554,46 +559,80 @@ class ElementPanel(ttk.Frame):
         s = mgr.summary()
         self.summary_var.set(f"共 {s['total']} 个元素 | 已有 {s['present']} | 缺失 {s['missing']}")
         flt = self.filter_var.get()
-        # 根据预览页面的下拉选择筛选元素：暂停页面只显示暂停元素，失败页面只显示失败相关元素
-        page = getattr(self.app.stage_preview, "page_var", None)
-        page_filter = set()
-        if page is not None:
-            if page.get() == "暂停页面":
-                page_filter = {"pause-overlay", "pause-continue", "pause-retry", "pause-back"}
-            elif page.get() == "失败页面":
-                page_filter = {"fail-background", "pause-retry", "pause-back"}
-        for cat, elems in by_category().items():
-            children = []
-            for e in elems:
-                if page_filter and e.filename not in page_filter:
-                    continue
-                st = mgr.status(e)
-                if flt == "missing" and st.exists:
-                    continue
-                if flt == "hd" and (not st.exists or not st.has_hd):
-                    continue
-                if flt == "anim" and (not st.exists or not st.frames):
-                    continue
-                children.append((e, st))
-            if not children:
-                continue
-            cat_id = self.tree.insert("", "end", text=cat, open=True)
-            for e, st in children:
-                tags = []
-                if not st.exists:
-                    state = "缺失"
-                    tags.append("missing")
-                elif st.has_hd:
-                    state = "存在(@2x)"
-                    tags.append("hd")
+        # 分类显示：开启时按当前预览界面过滤元素；关闭时任意界面都显示全部元素
+        if self.app.settings.get("enable_category", True):
+            # 根据预览页面的下拉选择筛选元素：仅显示该界面元素 + 通用元素
+            page = getattr(self.app.stage_preview, "page_var", None)
+            page_name = page.get() if page is not None else "游玩界面"
+            if page_name == "游玩界面":
+                def screen_match(e):
+                    return "游玩" in e.screens or "通用" in e.screens
+            else:
+                target = PAGE_SCREEN.get(page_name)
+                if target is not None:
+                    def screen_match(e):
+                        return "通用" in e.screens or target in e.screens
                 else:
-                    state = "存在"
-                    tags.append("ok")
-                if st.frames:
-                    state += f" ·{st.frames}帧"
-                    tags.append("anim")
-                self.tree.insert(cat_id, "end", iid=e.filename, text=e.filename,
-                                 values=(state,), tags=tuple(tags))
+                    screen_match = None
+        else:
+            screen_match = None
+        open_state = self.app.settings.get("element_open_state", {})
+        for group, cats in by_group().items():
+            group_hits = []
+            for cat, elems in cats.items():
+                children = []
+                for e in elems:
+                    if screen_match is not None and not screen_match(e):
+                        continue
+                    st = mgr.status(e)
+                    if flt == "missing" and st.exists:
+                        continue
+                    if flt == "hd" and (not st.exists or not st.has_hd):
+                        continue
+                    if flt == "anim" and (not st.exists or not st.frames):
+                        continue
+                    children.append((e, st))
+                if not children:
+                    continue
+                group_hits.append((cat, children))
+            if not group_hits:
+                continue
+            group_id = self.tree.insert("", "end", text=group,
+                                        open=open_state.get(group, True))
+            self._expand_map[group_id] = group
+            for cat, children in group_hits:
+                ckey = f"{group}/{cat}"
+                cat_id = self.tree.insert(group_id, "end", text=cat,
+                                          open=open_state.get(ckey, True))
+                self._expand_map[cat_id] = ckey
+                for e, st in children:
+                    tags = []
+                    if not st.exists:
+                        state = "缺失"
+                        tags.append("missing")
+                    elif st.has_hd:
+                        state = "存在(@2x)"
+                        tags.append("hd")
+                    else:
+                        state = "存在"
+                        tags.append("ok")
+                    if st.frames:
+                        state += f" ·{st.frames}帧"
+                        tags.append("anim")
+                    self.tree.insert(cat_id, "end", iid=e.filename, text=e.filename,
+                                     values=(state,), tags=tuple(tags))
+
+    def _on_open_close(self, event):
+        """元素树分类节点展开/收缩时，记录并持久化展开状态。"""
+        iid = self.tree.focus()
+        key = self._expand_map.get(iid)
+        if not key:
+            return
+        st = self.app.settings
+        state = dict(st.get("element_open_state", {}))
+        state[key] = bool(self.tree.item(iid, "open"))
+        st["element_open_state"] = state
+        save_settings(st)
 
     def select_element(self, filename):
         """编程选中列表中的指定元素（由游玩预览点击联动触发）。"""
@@ -605,7 +644,7 @@ class ElementPanel(ttk.Frame):
             page = getattr(self.app.stage_preview, "page_var", None)
             cur = page.get() if page is not None else "游玩界面"
             # 暂停/失败界面固定：点击联动选中时不切回游玩界面（元素由对应页面筛选展示）
-            if cur not in ("游玩界面", "暂停页面", "失败页面"):
+            if cur not in ("游玩界面", "暂停界面", "失败界面"):
                 page.set("游玩界面")
                 self.app.stage_preview._on_page_change()
             if not self.tree.exists(filename):
@@ -1068,7 +1107,7 @@ class StagePreview(ttk.Frame):
         """从 settings.json 恢复上次预览状态：页面类型、显示开关、比例与数值。"""
         s = getattr(self.app, "settings", None) or {}
         page = s.get("preview_page", "游玩界面")
-        if page in ("游玩界面", "暂停页面", "失败页面", "成绩结算页面", "选歌页面"):
+        if page in ("游玩界面", "暂停界面", "失败界面", "成绩结算界面", "选歌界面"):
             self.page_var.set(page)
         self.bg_var.set(bool(s.get("preview_bg", True)))
         self.cb_var.set(bool(s.get("preview_cb", True)))
@@ -1093,8 +1132,8 @@ class StagePreview(ttk.Frame):
         self.page_var = tk.StringVar(value="游玩界面")
         self.page_combo = ttk.Combobox(
             top, textvariable=self.page_var, state="readonly", width=12,
-            values=("游玩界面", "暂停页面", "失败页面",
-                    "成绩结算页面", "选歌页面"))
+            values=("游玩界面", "暂停界面", "失败界面",
+                    "成绩结算界面", "选歌界面"))
         self.page_combo.pack(side="left")
         self.page_combo.bind("<<ComboboxSelected>>", self._on_page_change)
 
@@ -1979,7 +2018,7 @@ class StagePreview(ttk.Frame):
                                          fill="#000000", outline="")
 
         # 失败界面：独立新开一块屏幕（不绘制游玩画面与血条）
-        if self.page_var.get() == "失败页面":
+        if self.page_var.get() == "失败界面":
             self._draw_fail(sx, sy, screen_w, screen_h, scale)
             return
 
@@ -2427,7 +2466,7 @@ class StagePreview(ttk.Frame):
         if self.page_var.get() == "游玩界面":
             self._draw_play_skip(sx, sy, screen_w, screen_h, scale)
         # 暂停页面在游玩画面之上绘制覆盖层与按钮
-        if self.page_var.get() == "暂停页面":
+        if self.page_var.get() == "暂停界面":
             self._draw_pause(sx, sy, screen_w, screen_h, scale)
 
 
@@ -2462,6 +2501,9 @@ class App(tk.Tk):
         # 游玩预览点击组件联动选中元素管理中的对应元素（默认关闭）
         self.click_select_var = tk.BooleanVar(
             value=bool(self.settings.get("click_select", False)))
+        # 元素管理是否按当前预览界面过滤分类（默认开启；关闭则任意界面显示全部元素）
+        self.enable_category_var = tk.BooleanVar(
+            value=bool(self.settings.get("enable_category", True)))
         # 编辑 skin.ini 的方式：path=直接导入路径 / copy=复制到皮肤子目录
         mode = self.settings.get("ini_import_mode", "path")
         self.ini_import_mode_var = tk.StringVar(
@@ -2546,6 +2588,7 @@ class App(tk.Tk):
         self.settings["hd_default"] = self.import_hd_var.get()
         self.settings["show_default"] = bool(self.show_default_var.get())
         self.settings["click_select"] = bool(self.click_select_var.get())
+        self.settings["enable_category"] = bool(self.enable_category_var.get())
         self.settings["ini_import_mode"] = self.ini_import_mode_var.get()
         self.settings["ini_import_folder"] = self.ini_import_folder_var.get()
         # 记录窗口大小/位置/最大化状态与各面板比例（sash 存相对比例）
@@ -2588,9 +2631,12 @@ class App(tk.Tk):
         self.destroy()
 
     def _on_setting_changed(self):
-        """设置弹窗中的选项变更：保存设置并刷新预览。"""
+        """设置弹窗中的选项变更：保存设置并刷新预览/元素列表。"""
         self._persist_settings()
         self.stage_preview.refresh()
+        ep = getattr(self, "element_panel", None)
+        if ep is not None:
+            ep.refresh()
 
     def select_element(self, filename):
         """联动选中元素管理列表中的指定元素（由游玩预览点击触发）。"""
@@ -2760,6 +2806,12 @@ class App(tk.Tk):
                         command=self._on_setting_changed
                         ).pack(anchor="w", pady=(10, 0))
         ttk.Label(preview_card, text="开启后：在左侧预览画面上点击某个组件，右侧“元素管理”列表会自动选中对应元素；双击可切换被遮挡的下一层组件",
+                  style="Secondary.TLabel").pack(anchor="w")
+        ttk.Checkbutton(preview_card, text="元素管理按当前预览界面分类显示",
+                        variable=self.enable_category_var,
+                        command=self._on_setting_changed
+                        ).pack(anchor="w", pady=(10, 0))
+        ttk.Label(preview_card, text="开启后：元素管理仅显示当前界面（游玩/暂停/失败/结算/选歌）的元素；关闭则任意界面都显示全部元素（仍按树状分组）",
                   style="Secondary.TLabel").pack(anchor="w")
 
         # TODO: 其余设置项——组件/游玩预览背景色、编辑方式（导入路径/复制到

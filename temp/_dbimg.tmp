@@ -1,0 +1,249 @@
+ID=catch-fruit-catcher-fail | FILEN=fruit-catcher-fail.png | CAT=osu!catch模式/接水果小人 | C=both
+ID=catch-fruit-catcher-idle | FILEN=fruit-catcher-idle.png | CAT=osu!catch模式/接水果小人 | C=both
+ID=catch-fruit-catcher-kiai | FILEN=fruit-catcher-kiai.png | CAT=osu!catch模式/接水果小人 | C=both
+ID=catch-fruit-ryuuta | FILEN=fruit-ryuuta.png | CAT=osu!catch模式/接水果小人 | C=stable
+ID=catch-fruit-apple | FILEN=fruit-apple.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-apple-overlay | FILEN=fruit-apple-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-bananas | FILEN=fruit-bananas.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-bananas-overlay | FILEN=fruit-bananas-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-drop | FILEN=fruit-drop.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-drop-overlay | FILEN=fruit-drop-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-grapes | FILEN=fruit-grapes.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-grapes-overlay | FILEN=fruit-grapes-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-orange | FILEN=fruit-orange.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-orange-overlay | FILEN=fruit-orange-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-pear | FILEN=fruit-pear.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-fruit-pear-overlay | FILEN=fruit-pear-overlay.png | CAT=osu!catch模式/水果 | C=both
+ID=catch-comboburst-fruits | FILEN=comboburst-fruits.png | CAT=osu!catch模式/连击提示 | C=stable | 多个使用 comboburst-fruits-{n}.png。lazer 移除了连击提示图功能。
+ID=mania-hit0 | FILEN=mania-hit0.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit0 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-hit100 | FILEN=mania-hit100.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit100 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-hit200 | FILEN=mania-hit200.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit200 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-hit300 | FILEN=mania-hit300.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit300 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-hit300g | FILEN=mania-hit300g.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit300g 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-hit50 | FILEN=mania-hit50.png | CAT=osu!mania模式/打击结果 | C=both | 可通过 [Mania] Hit50 自定义路径。存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=mania-key1 | FILEN=mania-key1.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage# 自定义路径。stable 与 lazer 均未配置时，每个舞台最外层及向内每隔一层的列使用类型 1；双舞台分别计算。
+ID=mania-key1D | FILEN=mania-key1D.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage#D 自定义路径。stable 与 lazer 均未配置时，每个舞台最外层及向内每隔一层的列使用类型 1；双舞台分别计算。
+ID=mania-key2 | FILEN=mania-key2.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage# 自定义路径。stable 与 lazer 均未配置时，每个舞台距边缘第二层及继续向内每隔一层的列使用类型 2；双舞台分别计算。
+ID=mania-key2D | FILEN=mania-key2D.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage#D 自定义路径。stable 与 lazer 均未配置时，每个舞台距边缘第二层及继续向内每隔一层的列使用类型 2；双舞台分别计算。
+ID=mania-keyS | FILEN=mania-keyS.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage# 自定义路径。stable 与 lazer 均未配置时，奇数键舞台的正中列使用类型 S；双舞台分别计算。
+ID=mania-keySD | FILEN=mania-keySD.png | CAT=osu!mania模式/按键 | C=both | 拉伸/压缩以适应列宽。可通过 KeyImage#D 自定义路径。stable 与 lazer 均未配置时，奇数键舞台的正中列使用类型 S；双舞台分别计算。
+ID=mania-stage-bottom | FILEN=mania-stage-bottom.png | CAT=osu!mania模式/舞台 | C=both | StageBottom 未配置时回退根目录 mania-stage-bottom。lazer 向下滚动时让图片底边居中贴住舞台底部，向上滚动时让图片顶边居中贴住舞台顶部；位置不受 HitPosition 控制。@2x 按一半纹理尺寸加载后再
+ID=mania-stage-hint | FILEN=mania-stage-hint.png | CAT=osu!mania模式/舞台 | C=both | StageHint 未配置时回退根目录 mania-stage-hint。lazer 将图片横向拉到舞台全宽，并把 Y 缩放约 0.9 * 1.6025 = 1.44225 倍；由 HitPosition 定位。
+ID=mania-stage-left | FILEN=mania-stage-left.png | CAT=osu!mania模式/舞台 | C=both | StageLeft 未配置时回退根目录 mania-stage-left。图片右边贴住轨道左边并向轨道外展开；宽度保持原值，高度独立拉伸到舞台高度。
+ID=mania-stage-light | FILEN=mania-stage-light.png | CAT=osu!mania模式/舞台 | C=both | StageLight 未配置时回退根目录 mania-stage-light。每列单独横向适配列宽，由 LightPosition 定位；动画循环播放，松键时淡出并把 Y 缩放到 0。
+ID=mania-stage-right | FILEN=mania-stage-right.png | CAT=osu!mania模式/舞台 | C=both | StageRight 未配置时回退根目录 mania-stage-right。图片左边贴住轨道右边并向轨道外展开；宽度保持原值，高度独立拉伸到舞台高度。
+ID=mania-warningarrow | FILEN=mania-warningarrow.png | CAT=osu!mania模式/舞台 | C=stable | 谱面开始前如果时间足够显示。可通过 WarningArrow 自定义路径。
+ID=mania-lightingL | FILEN=lightingL.png | CAT=osu!mania模式/舞台闪光 | C=both | 可通过 LightingL 自定义路径。
+ID=mania-lightingN | FILEN=lightingN.png | CAT=osu!mania模式/舞台闪光 | C=both | 可通过 LightingN 自定义路径。
+ID=mania-comboburst-mania | FILEN=comboburst-mania.png | CAT=osu!mania模式/连击提示 | C=stable | 多个使用 comboburst-mania-{n}.png。可通过 ComboBurstStyle 控制位置。lazer 移除了连击提示图功能。
+ID=mania-note1H | FILEN=mania-note1H.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#H 自定义路径。stable 与 lazer 均未配置时沿用类型 1 列映射；长按头缺失时回退同列普通音符，长按尾缺失时可继续回退到长按头。v2.5+ 默认翻转。
+ID=mania-note1L | FILEN=mania-note1L.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#L 自定义路径。stable 与 lazer 均未配置时沿用类型 1 列映射；按下时开始动画，松开时停止，NoteBodyStyle 改变行为。
+ID=mania-note1T | FILEN=mania-note1T.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#T 自定义路径。stable 与 lazer 均未配置时沿用类型 1 列映射；长按尾缺失时依次回退同列长按头、普通音符。v2.5+ 默认翻转。
+ID=mania-note2H | FILEN=mania-note2H.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#H 自定义路径。stable 与 lazer 均未配置时沿用类型 2 列映射；长按头缺失时回退同列普通音符，长按尾缺失时可继续回退到长按头。v2.5+ 默认翻转。
+ID=mania-note2L | FILEN=mania-note2L.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#L 自定义路径。stable 与 lazer 均未配置时沿用类型 2 列映射；按下时开始动画，松开时停止，NoteBodyStyle 改变行为。
+ID=mania-note2T | FILEN=mania-note2T.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#T 自定义路径。stable 与 lazer 均未配置时沿用类型 2 列映射；长按尾缺失时依次回退同列长按头、普通音符。v2.5+ 默认翻转。
+ID=mania-noteSH | FILEN=mania-noteSH.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#H 自定义路径。stable 与 lazer 均未配置时沿用奇数键舞台正中列的类型 S 映射；长按头缺失时回退同列普通音符，长按尾缺失时可继续回退到长按头。v2.5+ 默认翻转。
+ID=mania-noteSL | FILEN=mania-noteSL.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#L 自定义路径。stable 与 lazer 均未配置时沿用奇数键舞台正中列的类型 S 映射；按下时开始动画，松开时停止，NoteBodyStyle 改变行为。
+ID=mania-noteST | FILEN=mania-noteST.png | CAT=osu!mania模式/长按音符 | C=both | 可通过 NoteImage#T 自定义路径。stable 与 lazer 均未配置时沿用奇数键舞台正中列的类型 S 映射；长按尾缺失时依次回退同列长按头、普通音符。v2.5+ 默认翻转。
+ID=mania-note1 | FILEN=mania-note1.png | CAT=osu!mania模式/音符 | C=both | 可通过 NoteImage# 自定义路径。stable 与 lazer 均未配置时，每个舞台最外层及向内每隔一层的列使用类型 1；双舞台分别计算。
+ID=mania-note2 | FILEN=mania-note2.png | CAT=osu!mania模式/音符 | C=both | 可通过 NoteImage# 自定义路径。stable 与 lazer 均未配置时，每个舞台距边缘第二层及继续向内每隔一层的列使用类型 2；双舞台分别计算。
+ID=mania-noteS | FILEN=mania-noteS.png | CAT=osu!mania模式/音符 | C=both | 可通过 NoteImage# 自定义路径。stable 与 lazer 均未配置时，奇数键舞台的正中列使用类型 S；双舞台分别计算。
+ID=taiko-bar-left | FILEN=taiko-bar-left.png | CAT=osu!taiko模式/太鼓区域 | C=both | 位置因版本而异。当前代码中作为输入太鼓底图；与 taiko-drum-inner/outer 组成左右半鼓，按键时内圈/外圈分别短暂显示。
+ID=taiko-bar-right | FILEN=taiko-bar-right.png | CAT=osu!taiko模式/太鼓区域 | C=both | 滚动条正常状态（拉伸适应屏幕宽度）。位置因版本而异。当前代码中作为太鼓游玩区域右侧滚动背景。
+ID=taiko-bar-right-glow | FILEN=taiko-bar-right-glow.png | CAT=osu!taiko模式/太鼓区域 | C=both | 滚动条 Kiai 状态（覆盖 taiko-bar-right）。位置因版本而异。当前代码根据 EffectControlPoint.KiaiMode 渐显或渐隐。
+ID=taiko-barline | FILEN=taiko-barline.png | CAT=osu!taiko模式/太鼓区域 | C=both | 小节线（每个小节开始时显示）。位置因版本而异。当前代码中填充游玩区域宽度，高度约为区域的 88%。
+ID=taiko-drum-inner | FILEN=taiko-drum-inner.png | CAT=osu!taiko模式/太鼓区域 | C=both | 太鼓内圈。当前代码中作为太鼓中心击打反馈，按对应中心键时短暂显示。位置因版本而异。
+ID=taiko-drum-outer | FILEN=taiko-drum-outer.png | CAT=osu!taiko模式/太鼓区域 | C=both | 太鼓外圈。当前代码中作为太鼓鼓边击打反馈，按对应鼓边键时短暂显示。位置因版本而异。
+ID=taiko-pippidonclear | FILEN=pippidonclear.png | CAT=osu!taiko模式/太鼓小人 | C=both | 动画顺序 0-1-2-3-4-5-6-5-6-5-4-3-2-1-0。连击里程碑时播放一次。
+ID=taiko-pippidonfail | FILEN=pippidonfail.png | CAT=osu!taiko模式/太鼓小人 | C=both | Miss 或休息血量不足时，Kiai 时间 Miss 时覆盖 kiai 状态。
+ID=taiko-pippidonidle | FILEN=pippidonidle.png | CAT=osu!taiko模式/太鼓小人 | C=both | 休息时段或等待下一个音符时。
+ID=taiko-pippidonkiai | FILEN=pippidonkiai.png | CAT=osu!taiko模式/太鼓小人 | C=both | Kiai 时间播放，Miss 时被 fail 覆盖。
+ID=taiko-hit0 | FILEN=taiko-hit0.png | CAT=osu!taiko模式/打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=taiko-hit100 | FILEN=taiko-hit100.png | CAT=osu!taiko模式/打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=taiko-hit100k | FILEN=taiko-hit100k.png | CAT=osu!taiko模式/打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=taiko-hit300 | FILEN=taiko-hit300.png | CAT=osu!taiko模式/打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=taiko-hit300g | FILEN=taiko-hit300g.png | CAT=osu!taiko模式/打击结果 | C=stable
+ID=taiko-hit300k | FILEN=taiko-hit300k.png | CAT=osu!taiko模式/打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=taiko-spinner-approachcircle | FILEN=spinner-approachcircle.png | CAT=osu!taiko模式/摇器 | C=both | 摇器缩圈（共享 osu! 的 spinner-approachcircle.png，随时间缩小）。当前代码中在太鼓 swell 持续时间内缩小到结束。
+ID=taiko-spinner-circle | FILEN=spinner-circle.png | CAT=osu!taiko模式/摇器 | C=both | 摇器旋转圈（共享 osu! 的 spinner-circle.png，每次击打逆时针旋转）。当前代码中在太鼓 swell 中按击打次数增加旋转量。
+ID=taiko-spinner-warning | FILEN=spinner-warning.png | CAT=osu!taiko模式/摇器 | C=both | 摇器（转盘）警告标识。当前代码中在太鼓 swell 开始时显示并放大后渐隐。
+ID=taiko-flower-group | FILEN=taiko-flower-group.png | CAT=osu!taiko模式/游玩区域 | C=stable | 多个使用 taiko-flower-group-{n}.png。lazer 未实现此功能。
+ID=taiko-slider | FILEN=taiko-slider.png | CAT=osu!taiko模式/游玩区域 | C=both | 有故事板时禁用。
+ID=taiko-slider-fail | FILEN=taiko-slider-fail.png | CAT=osu!taiko模式/游玩区域 | C=both
+ID=taiko-roll-end | FILEN=taiko-roll-end.png | CAT=osu!taiko模式/滚打 | C=both | 滚打末端（颜色从黄渐变到红）。当前代码中作为滚打主体的尾部，与 taiko-roll-middle 拼接。
+ID=taiko-roll-middle | FILEN=taiko-roll-middle.png | CAT=osu!taiko模式/滚打 | C=both | 滚打轨道（SD图像宽度必须恰好1px，颜色从黄渐变到红）。当前代码中作为滚打主体，并与 taiko-roll-end 拼接成完整滚打轨道。
+ID=taiko-glow | FILEN=taiko-glow.png | CAT=osu!taiko模式/音符 | C=both
+ID=taiko-lighting | FILEN=lighting.png | CAT=osu!taiko模式/音符 | C=both
+ID=taiko-taikobigcircle | FILEN=taikobigcircle.png | CAT=osu!taiko模式/音符 | C=both
+ID=taiko-taikobigcircleoverlay | FILEN=taikobigcircleoverlay.png | CAT=osu!taiko模式/音符 | C=both
+ID=taiko-taikohitcircle | FILEN=taikohitcircle.png | CAT=osu!taiko模式/音符 | C=both
+ID=taiko-taikohitcircleoverlay | FILEN=taikohitcircleoverlay.png | CAT=osu!taiko模式/音符 | C=both
+ID=hitcircleselect | FILEN=hitcircleselect.png | CAT=osu!模式 | C=both | 仅用于编辑器模式。
+ID=osu-comboburst | FILEN=comboburst.png | CAT=osu!模式 | C=stable | 多个使用 comboburst-{n}.png。v2.3+ catch/mania 使用专用版本。lazer 移除了连击提示图功能。
+ID=osu-sliderb-nd | FILEN=sliderb-nd.png | CAT=osu!模式 | C=both | 默认皮肤的滑条球底层。与 sliderb.png 共用形成完整滑条球。
+ID=osu-sliderb-spec | FILEN=sliderb-spec.png | CAT=osu!模式 | C=both | 默认皮肤的滑条球高光。与 sliderb.png 和 sliderb-nd.png 共用。
+ID=osu-sliderpoint10 | FILEN=sliderpoint10.png | CAT=osu!模式 | C=both
+ID=osu-sliderpoint30 | FILEN=sliderpoint30.png | CAT=osu!模式 | C=both
+ID=pause-replay | FILEN=pause-replay.png | CAT=osu!模式 | C=stable | lazer 使用程序化 UI 替代。
+ID=osu-approachcircle | FILEN=approachcircle.png | CAT=osu!模式/打击圈 | C=both | Hidden 模组下不显示。应为圆形。
+ID=osu-followpoint | FILEN=followpoint.png | CAT=osu!模式/打击圈 | C=both | 每帧停留约1.2秒。
+ID=osu-hitcircle | FILEN=hitcircle.png | CAT=osu!模式/打击圈 | C=both | 使用连击色着色。也用于滑条起/终点（如未单独定义）。应为圆形。
+ID=osu-hitcircleoverlay | FILEN=hitcircleoverlay.png | CAT=osu!模式/打击圈 | C=both | 通过 HitCircleOverlayAboveNumber 控制位置。应为圆形。
+ID=osu-lighting | FILEN=lighting.png | CAT=osu!模式/打击圈 | C=both | 使用连击色着色。也用于 taiko 和 catch 模式。
+ID=osu-default-0to9 | FILEN=default-0.png 到 default-9.png | CAT=osu!模式/打击圈数字 | C=both | 可通过 HitCirclePrefix 自定义前缀，默认 'default'。
+ID=osu-reversearrow | FILEN=reversearrow.png | CAT=osu!模式/滑条 | C=both | 箭头应指向右方。
+ID=osu-sliderb | FILEN=sliderb.png | CAT=osu!模式/滑条 | C=both | 注意：动画帧命名无连字符（sliderb0.png, sliderb1.png...）。
+ID=osu-sliderendcircle | FILEN=sliderendcircle.png | CAT=osu!模式/滑条 | C=both | 应为圆形。
+ID=osu-sliderendcircleoverlay | FILEN=sliderendcircleoverlay.png | CAT=osu!模式/滑条 | C=both | 应为圆形。
+ID=osu-sliderendmiss | FILEN=sliderendmiss.png | CAT=osu!模式/滑条 | C=lazer | stable 无此功能。
+ID=osu-sliderfollowcircle | FILEN=sliderfollowcircle.png | CAT=osu!模式/滑条 | C=both | 最大 308x308（判定区域）。
+ID=osu-sliderscorepoint | FILEN=sliderscorepoint.png | CAT=osu!模式/滑条 | C=both | 与滑条起/终点重叠时不渲染。
+ID=osu-sliderstartcircle | FILEN=sliderstartcircle.png | CAT=osu!模式/滑条 | C=both | 应为圆形。
+ID=osu-sliderstartcircleoverlay | FILEN=sliderstartcircleoverlay.png | CAT=osu!模式/滑条 | C=both | 应为圆形。
+ID=osu-slidertickmiss | FILEN=slidertickmiss.png | CAT=osu!模式/滑条 | C=lazer | stable 无此功能。
+ID=osu-particle100 | FILEN=particle100.png | CAT=osu!模式/粒子 | C=both
+ID=osu-particle300 | FILEN=particle300.png | CAT=osu!模式/粒子 | C=both
+ID=osu-particle50 | FILEN=particle50.png | CAT=osu!模式/粒子 | C=both
+ID=osu-spinner-approachcircle | FILEN=spinner-approachcircle.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-background | FILEN=spinner-background.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-bottom | FILEN=spinner-bottom.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-circle | FILEN=spinner-circle.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-clear | FILEN=spinner-clear.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-glow | FILEN=spinner-glow.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-metre | FILEN=spinner-metre.png | CAT=osu!模式/转盘 | C=both | 可通过 SpinnerNoBlink 禁用闪烁。
+ID=osu-spinner-middle | FILEN=spinner-middle.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-middle2 | FILEN=spinner-middle2.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-osu | FILEN=spinner-osu.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-rpm | FILEN=spinner-rpm.png | CAT=osu!模式/转盘 | C=both | 1024x768 下位置 (373,712)。
+ID=osu-spinner-spin | FILEN=spinner-spin.png | CAT=osu!模式/转盘 | C=both
+ID=osu-spinner-top | FILEN=spinner-top.png | CAT=osu!模式/转盘 | C=both
+ID=menu-background | FILEN=menu-background.jpg | CAT=主菜单 | C=both | 仅支持 .jpg 扩展名。拖放图片会替换皮肤文件夹中的图片。
+ID=menu-snow | FILEN=menu-snow.png | CAT=主菜单 | C=both | 必须在设置中启用。
+ID=welcome-text | FILEN=welcome_text.png | CAT=主菜单 | C=both
+ID=count1 | FILEN=count1.png | CAT=倒计时 | C=stable | lazer 使用程序化绘制数字动画替代。
+ID=count2 | FILEN=count2.png | CAT=倒计时 | C=stable | lazer 使用程序化绘制数字动画替代。
+ID=count3 | FILEN=count3.png | CAT=倒计时 | C=stable | lazer 使用程序化绘制数字动画替代。
+ID=go | FILEN=go.png | CAT=倒计时 | C=stable
+ID=ready | FILEN=ready.png | CAT=倒计时 | C=stable
+ID=cursor | FILEN=cursor.png | CAT=光标 | C=both | stable 按客户端规则使用；lazer 仅在 osu! 标准模式游玩中消费皮肤光标。lazer 菜单/选歌界面及 taiko、catch、mania 使用原生光标；不要据全局界面标签推断 lazer 消费范围。
+ID=cursor-ripple | FILEN=cursor-ripple.png | CAT=光标 | C=both | stable 按客户端规则使用；lazer 仅在 osu! 标准模式游玩中消费皮肤光标。lazer 菜单/选歌界面及 taiko、catch、mania 使用原生光标；不要据全局界面标签推断 lazer 消费范围。
+ID=cursor-smoke | FILEN=cursor-smoke.png | CAT=光标 | C=both | stable 按客户端规则使用；lazer 仅在 osu! 标准模式游玩中消费皮肤光标。lazer 菜单/选歌界面及 taiko、catch、mania 使用原生光标；不要据全局界面标签推断 lazer 消费范围。
+ID=cursormiddle | FILEN=cursormiddle.png | CAT=光标 | C=both | stable 按客户端规则使用；lazer 仅在 osu! 标准模式游玩中消费皮肤光标。lazer 菜单/选歌界面及 taiko、catch、mania 使用原生光标；不要据全局界面标签推断 lazer 消费范围。
+ID=cursortrail | FILEN=cursortrail.png | CAT=光标 | C=both | stable 按客户端规则使用；lazer 仅在 osu! 标准模式游玩中消费皮肤光标。lazer 菜单/选歌界面及 taiko、catch、mania 使用原生光标；不要据全局界面标签推断 lazer 消费范围。
+ID=score-0to9 | FILEN=score-0.png 到 score-9.png | CAT=分数数字 | C=both | 默认也用于连击数。可通过 ScorePrefix/ComboPrefix 自定义前缀。连击混合模式：osu/catch 加法，mania 乘法。
+ID=score-comma | FILEN=score-comma.png | CAT=分数数字 | C=both
+ID=score-dot | FILEN=score-dot.png | CAT=分数数字 | C=both
+ID=score-percent | FILEN=score-percent.png | CAT=分数数字 | C=both
+ID=score-pp | FILEN=score-pp.png | CAT=分数数字 | C=lazer | 仅 lazer 的 legacy 性能点数计数器使用；该组件不是默认 legacy HUD 的固定组成，通常需通过 lazer 皮肤布局编辑器添加。
+ID=score-x | FILEN=score-x.png | CAT=分数数字 | C=both
+ID=scorebar-bg | FILEN=scorebar-bg.png | CAT=分数条 | C=both | 无大小限制。mania 中逆时针旋转90度缩小至0.7倍。
+ID=scorebar-colour | FILEN=scorebar-colour.png | CAT=分数条 | C=both | 有 scorebar-marker 时混合模式 Multiplicative，否则 Normal。当前代码中作为 HP 分数条填充动画，并按当前血量遮罩显示对应宽度。
+ID=scorebar-ki | FILEN=scorebar-ki.png | CAT=分数条 | C=both | 不用于 mania。
+ID=scorebar-kidanger | FILEN=scorebar-kidanger.png | CAT=分数条 | C=both | 不用于 mania。
+ID=scorebar-kidanger2 | FILEN=scorebar-kidanger2.png | CAT=分数条 | C=both | 不用于 mania。
+ID=scorebar-marker | FILEN=scorebar-marker.png | CAT=分数条 | C=both | 不用于 mania。到达危急区域时渐隐。
+ID=hit0 | FILEN=hit0.png | CAT=打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=hit100 | FILEN=hit100.png | CAT=打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=hit100k | FILEN=hit100k.png | CAT=打击结果 | C=stable | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。lazer 不读取此通用判定资源。
+ID=hit300 | FILEN=hit300.png | CAT=打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=hit300g | FILEN=hit300g.png | CAT=打击结果 | C=stable | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。lazer 不读取此通用判定资源。
+ID=hit300k | FILEN=hit300k.png | CAT=打击结果 | C=stable | 存在 -0 帧时，动画不加载无后缀基图；stable 结算屏幕不显示此元素的判定数量统计。lazer 不读取此通用判定资源。
+ID=hit50 | FILEN=hit50.png | CAT=打击结果 | C=both | 存在 -0 帧时，动画不加载无后缀基图；stable 结算界面的判定数量统计会独立读取无后缀基图。
+ID=button-left | FILEN=button-left.png | CAT=按钮 | C=stable | 颜色因按钮状态而异。lazer 使用程序化绘制替代。补充：stable 专属按钮左侧组件；用于编辑器弹出界面（管理收藏夹、删除、编辑、取消等）、多人游戏大厅（返回主菜单、建立新房间、快速加入等）以及多人房间内（准备、离开等）按钮。
+ID=button-middle | FILEN=button-middle.png | CAT=按钮 | C=stable | lazer 使用程序化绘制替代。补充：stable 专属按钮中间组件，拉伸以适应按钮宽度；用于编辑器弹出界面、多人游戏大厅和多人房间内的按钮。
+ID=button-right | FILEN=button-right.png | CAT=按钮 | C=stable | lazer 使用程序化绘制替代。补充：stable 专属按钮右侧组件；用于编辑器弹出界面、多人游戏大厅和多人房间内的按钮。
+ID=fail-background | FILEN=fail-background.png | CAT=暂停界面 | C=stable | 也支持 .jpg。lazer 使用程序化绘制替代。
+ID=pause-back | FILEN=pause-back.png | CAT=暂停界面 | C=stable | lazer 使用程序化按钮替代。
+ID=pause-continue | FILEN=pause-continue.png | CAT=暂停界面 | C=stable | lazer 使用程序化按钮替代。
+ID=pause-overlay | FILEN=pause-overlay.png | CAT=暂停界面 | C=stable | 也支持 .jpg。lazer 使用程序化绘制替代。
+ID=pause-retry | FILEN=pause-retry.png | CAT=暂停界面 | C=both | 暂停/失败屏幕高度 400px，结算屏幕高度 576px。lazer 使用程序化按钮替代。
+ID=selection-mod-autoplay | FILEN=selection-mod-autoplay.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-cinema | FILEN=selection-mod-cinema.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-doubletime | FILEN=selection-mod-doubletime.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-easy | FILEN=selection-mod-easy.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-fadein | FILEN=selection-mod-fadein.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-flashlight | FILEN=selection-mod-flashlight.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-halftime | FILEN=selection-mod-halftime.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-hardrock | FILEN=selection-mod-hardrock.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-hidden | FILEN=selection-mod-hidden.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key1 | FILEN=selection-mod-key1.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key2 | FILEN=selection-mod-key2.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key3 | FILEN=selection-mod-key3.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key4 | FILEN=selection-mod-key4.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key5 | FILEN=selection-mod-key5.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key6 | FILEN=selection-mod-key6.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key7 | FILEN=selection-mod-key7.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key8 | FILEN=selection-mod-key8.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-key9 | FILEN=selection-mod-key9.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-keycoop | FILEN=selection-mod-keycoop.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-mirror | FILEN=selection-mod-mirror.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-nightcore | FILEN=selection-mod-nightcore.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-nofail | FILEN=selection-mod-nofail.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-perfect | FILEN=selection-mod-perfect.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-random | FILEN=selection-mod-random.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-relax | FILEN=selection-mod-relax.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-relax2 | FILEN=selection-mod-relax2.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-scorev2 | FILEN=selection-mod-scorev2.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-spunout | FILEN=selection-mod-spunout.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-suddendeath | FILEN=selection-mod-suddendeath.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=selection-mod-target | FILEN=selection-mod-target.png | CAT=模组图标 | C=stable | lazer 中所有模组图标使用矢量系统替代，不加载。
+ID=mode-fruits | FILEN=mode-fruits.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-fruits-med | FILEN=mode-fruits-med.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-fruits-small | FILEN=mode-fruits-small.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-mania | FILEN=mode-mania.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-mania-med | FILEN=mode-mania-med.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-mania-small | FILEN=mode-mania-small.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-osu | FILEN=mode-osu.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-osu-med | FILEN=mode-osu-med.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-osu-small | FILEN=mode-osu-small.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-taiko | FILEN=mode-taiko.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-taiko-med | FILEN=mode-taiko-med.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=mode-taiko-small | FILEN=mode-taiko-small.png | CAT=游戏模式图标 | C=stable | lazer 使用矢量图标 (SpriteIcon + OsuIcon) 替代。
+ID=arrow-pause | FILEN=arrow-pause.png | CAT=游玩界面 | C=both | 不着色。用于暂停与失败屏幕。
+ID=arrow-warning | FILEN=arrow-warning.png | CAT=游玩界面 | C=both | 不着色。
+ID=masking-border | FILEN=masking-border.png | CAT=游玩界面 | C=stable | lazer 使用 LetterboxOverlay 程序化绘制替代。
+ID=multi-skipped | FILEN=multi-skipped.png | CAT=游玩界面 | C=stable | lazer 使用程序化绘制替代。
+ID=play-skip | FILEN=play-skip.png | CAT=游玩界面 | C=stable | 补充：stable 专属；谱面开头存在较长的无 note 区域时显示，点击后跳过这段空白并进入可游玩内容。
+ID=play-unranked | FILEN=play-unranked.png | CAT=游玩界面 | C=stable | lazer 使用程序化绘制的文字徽章替代。
+ID=play-warningarrow | FILEN=play-warningarrow.png | CAT=游玩界面 | C=stable | v1.0 白色 / v2.0+ 红色（休息结束）。lazer 使用 FontAwesome 图标替代。
+ID=section-fail | FILEN=section-fail.png | CAT=游玩界面 | C=stable | lazer 使用 BreakOverlay 程序化绘制替代。
+ID=section-pass | FILEN=section-pass.png | CAT=游玩界面 | C=stable | lazer 使用 BreakOverlay 程序化绘制替代。
+ID=ranking-accuracy | FILEN=ranking-accuracy.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-graph | FILEN=ranking-graph.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-maxcombo | FILEN=ranking-maxcombo.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-panel | FILEN=ranking-panel.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-perfect | FILEN=ranking-perfect.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-replay | FILEN=ranking-replay.png | CAT=结算界面 | C=stable
+ID=ranking-retry | FILEN=ranking-retry.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-title | FILEN=ranking-title.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-winner | FILEN=ranking-winner.png | CAT=结算界面 | C=stable | lazer 使用程序化 UI 替代。
+ID=ranking-A | FILEN=ranking-A.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-A-small | FILEN=ranking-A-small.png | CAT=结算等级 | C=both
+ID=ranking-B | FILEN=ranking-B.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-B-small | FILEN=ranking-B-small.png | CAT=结算等级 | C=both
+ID=ranking-C | FILEN=ranking-C.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-C-small | FILEN=ranking-C-small.png | CAT=结算等级 | C=both
+ID=ranking-D | FILEN=ranking-D.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-D-small | FILEN=ranking-D-small.png | CAT=结算等级 | C=both
+ID=ranking-S | FILEN=ranking-S.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-S-small | FILEN=ranking-S-small.png | CAT=结算等级 | C=both
+ID=ranking-SH | FILEN=ranking-SH.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-SH-small | FILEN=ranking-SH-small.png | CAT=结算等级 | C=both
+ID=ranking-X | FILEN=ranking-X.png | CAT=结算等级 | C=stable | lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*-small.png。
+ID=ranking-X-small | FILEN=ranking-X-small.png | CAT=结算等级 | C=both
+ID=ranking-XH | FILEN=ranking-XH.png | CAT=结算等级 | C=stable | v2.0+ 高度 320px，到右边缘 192px。lazer 当前唯一使用大号等级图的位置固定从 DefaultClassicSkin 读取，导入的 legacy 用户皮肤无法覆盖；游玩中的 legacy 等级显示使用 ranking-*
+ID=ranking-XH-small | FILEN=ranking-XH-small.png | CAT=结算等级 | C=both
+ID=inputoverlay-background | FILEN=inputoverlay-background.png | CAT=输入覆盖层 | C=both | 高度 320px，需在设置中启用。
+ID=inputoverlay-key | FILEN=inputoverlay-key.png | CAT=输入覆盖层 | C=both
+ID=scoreentry-0to9 | FILEN=scoreentry-0.png 到 scoreentry-9.png | CAT=输入覆盖层/按键计数数字 | C=both | 仅用于 lazer 的 legacy HUD 按键计数器；当前由 osu! 和 osu!catch 的 legacy 皮肤适配层使用。首次按键前的按键名称仍使用程序字体。stable 同样支持这些 legacy 资源。
+ID=menu-back | FILEN=menu-back.png | CAT=选歌界面 | C=stable | lazer 使用 BackButton 程序化绘制替代。
+ID=menu-button-background | FILEN=menu-button-background.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=selection-mode | FILEN=selection-mode.png | CAT=选歌界面 | C=stable | lazer 使用 ScreenFooterButton 程序化绘制替代。
+ID=selection-mods | FILEN=selection-mods.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=selection-options | FILEN=selection-options.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=selection-random | FILEN=selection-random.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=selection-tab | FILEN=selection-tab.png | CAT=选歌界面 | C=stable | lazer 使用 OsuTabControl 程序化绘制替代。
+ID=songselect-bottom | FILEN=songselect-bottom.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=songselect-top | FILEN=songselect-top.png | CAT=选歌界面 | C=stable | lazer 使用程序化绘制替代。
+ID=star | FILEN=star.png | CAT=选歌界面 | C=stable | lazer 中 star.png 不被引用，仅 star2.png 被使用。
+ID=star2 | FILEN=star2.png | CAT=选歌界面 | C=both | 补充：当前代码确认用于主菜单星星喷泉（Menu/fountain-star 映射到 star2）和 osu! 模式光标粒子；光标粒子在 Break 时间或 Kiai 段跟踪滑条/转盘时生成。
