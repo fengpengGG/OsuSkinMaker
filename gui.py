@@ -1398,18 +1398,19 @@ class StagePreview(ttk.Frame):
     def _open_skin_image(self, path):
         """打开皮肤图片并按官方规则处理 @2x（带缓存，跨刷新复用）。
 
-        缓存记录文件修改时间：素材文件被覆盖（同名替换）后 mtime 变化，
-        下次绘制会自动重新加载，无需手动清缓存。
+        缓存记录文件修改时间与大小：素材文件被覆盖/替换后（mtime 或大小
+        变化）下次绘制会自动重新加载，无需手动清缓存。
         """
         if not HAS_PIL or path is None:
             return None
         try:
-            mtime = os.path.getmtime(path)
+            st = os.stat(path)
+            mtime, size = st.st_mtime, st.st_size
         except OSError:
             return None
         ent = self._img_cache.get(path)
-        if ent is not None and ent[0] == mtime:
-            return ent[1]
+        if ent is not None and ent[0] == mtime and ent[1] == size:
+            return ent[2]
         try:
             img = Image.open(path).convert("RGBA")
             if img.size[0] <= 0 or img.size[1] <= 0:
@@ -1418,8 +1419,9 @@ class StagePreview(ttk.Frame):
                 w, h = img.size
                 w, h = max(1, w // 2), max(1, h // 2)
                 img = img.resize((w, h), Image.LANCZOS)
-            self._img_cache[path] = (mtime, img)
+            self._img_cache[path] = (mtime, size, img)
             img._skin_key = path        # 稳定键：供 _photo 缓存使用，避免 id 复用误命中
+            img._skin_mtime = mtime     # 内容标识：_photo 缓存键加入 mtime，防同路径换图仍显示旧图
             return img
         except Exception:
             return None
@@ -1442,8 +1444,11 @@ class StagePreview(ttk.Frame):
         # 缓存键优先用 img 绑定的稳定键（_open_skin_image 设置），
         # 避免用 id(img)：临时构造的合成图（如 body 平铺）每次 id 都变，
         # 导致缓存永不命中；同时避免对象被 GC 后 id 复用造成误命中。
-        key = (getattr(img, "_skin_key", None) or id(img), int(w), int(h),
-               bool(flip_h), bool(flip_v))
+        # 键中并入 _skin_mtime：同一路径文件被替换（内容变化）后不再命中
+        # 旧 PhotoImage，否则“删除素材后重新添加”会一直显示旧图。
+        key = (getattr(img, "_skin_key", None) or id(img),
+               getattr(img, "_skin_mtime", None),
+               int(w), int(h), bool(flip_h), bool(flip_v))
         if key in self._photo_cache:
             return self._photo_cache[key]
         img = img.resize((max(1, int(w)), max(1, int(h))), Image.LANCZOS)
@@ -2502,7 +2507,7 @@ class App(tk.Tk):
             setup_style(self, theme)
         else:
             setup_style(self)
-        self.title("OsuSkinMaker v0.0.3")
+        self.title("OsuSkinMaker v0.0.4")
         self.minsize(1000, 680)
         self.skin_folder = None
         self.ini = SkinIni()
