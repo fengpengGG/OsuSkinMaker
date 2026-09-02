@@ -1,4 +1,4 @@
-# OsuSkinMaker v0.0.4
+# OsuSkinMaker v0.0.5
 
 一个集 **游玩预览**、**元素管理**、**skin.ini 编辑**于一体的 osu! mania 皮肤制作 GUI 工具。
 

@@ -2591,7 +2591,7 @@ class App(tk.Tk):
             setup_style(self, theme)
         else:
             setup_style(self)
-        self.title("OsuSkinMaker v0.0.4")
+        self.title("OsuSkinMaker v0.0.5")
         self.minsize(1000, 680)
         self.skin_folder = None
         self.ini = SkinIni()
