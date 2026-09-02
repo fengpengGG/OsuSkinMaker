@@ -764,13 +764,23 @@ class ElementPanel(ttk.Frame):
         return frames
 
     def _play_animation(self):
-        """播放动画：逐帧循环显示。"""
+        """播放动画：逐帧循环显示。
+
+        优化：启动时一次性预解码全部帧（处理 @2x）并缓存缩放后的
+        PhotoImage，播放只切换显示，不再每帧重复 Image.open / resize /
+        PhotoImage；同时保持用户当前的缩放/平移视图不变。
+        """
         if not hasattr(self, '_anim_files') or not self._anim_files:
+            return
+        self._preload_anim_frames()
+        if not self._anim_pil_frames:
             return
         self._anim_idx = 0
         self._anim_playing = True
         self._anim_btn.configure(text="停止", command=self._stop_animation)
-        self._show_anim_frame()
+        self._anim_label.configure(text="")
+        # 当前帧已按当前缩放预渲染（若未渲染会自动补上），直接定位到首帧
+        self._show_anim_frame(nudge=False)
 
     def _stop_animation(self):
         self._anim_playing = False
@@ -780,18 +790,72 @@ class ElementPanel(ttk.Frame):
         if hasattr(self, '_anim_btn'):
             self._anim_btn.configure(text="播放动画", command=self._play_animation)
 
-    def _show_anim_frame(self):
-        """显示当前帧，并安排下一帧。"""
-        if not self._anim_playing or not hasattr(self, '_anim_files'):
+    def _preload_anim_frames(self):
+        """预解码全部动画帧为 PIL 原图，并按帧号排序；返回 (frame, img) 列表。"""
+        if getattr(self, '_anim_pil_frames', None) is not None:
             return
-        if self._anim_idx >= len(self._anim_files):
+        self._anim_photo_cache = {}
+        frames = []
+        for frame, path in self._anim_files:
+            try:
+                img = Image.open(path).convert("RGBA")
+            except Exception:
+                continue
+            # @2x 素材按官方规则先缩小为 1x 逻辑尺寸再预览
+            if SkinManager.is_hd_path(path):
+                w, h = img.size
+                img = img.resize((max(1, w // 2), max(1, h // 2)), Image.LANCZOS)
+            if img.size[0] <= 1 or img.size[1] <= 1:
+                img = img.resize((64, 64), Image.NEAREST)
+            frames.append((frame, img, path))
+        frames.sort(key=lambda x: x[0])
+        self._anim_pil_frames = [(f, img) for f, img, _ in frames]
+        # 若无任何可用帧则清空，避免反复预加载
+        if not self._anim_pil_frames:
+            self._anim_photo_cache = None
+
+    def _anim_photo_for(self, index):
+        """取第 index 帧在当前缩放下的 PhotoImage（缓存，缩放变化时自动重算）。"""
+        img = self._anim_pil_frames[index][1]
+        w, h = img.size
+        dw = max(1, int(w * self._zoom))
+        dh = max(1, int(h * self._zoom))
+        # 缓存键含帧索引：动画帧常同尺寸，仅用 (dw,dh) 会让后一帧误命中
+        # 前一帧的 PhotoImage（缓存命中但图是错的），导致动画停在第一帧。
+        key = (index, dw, dh)
+        if key in self._anim_photo_cache:
+            return self._anim_photo_cache[key]
+        photo = ImageTk.PhotoImage(img.resize((dw, dh), Image.LANCZOS))
+        self._anim_photo_cache[key] = photo
+        return photo
+
+    def _show_anim_frame(self, nudge=True):
+        """显示当前帧，并安排下一帧。
+
+        nudge=True 时返回前将 _anim_idx 前进（用于定时器后续播放）；
+        首帧播放时 nudge=False 保持停在首帧，避免前进一帧跳过。
+        """
+        if not self._anim_playing or not self._anim_pil_frames:
+            return
+        if self._anim_idx >= len(self._anim_pil_frames):
             self._anim_idx = 0
-        frame, path = self._anim_files[self._anim_idx]
-        # 不销毁重建，直接更新画布图片，避免 pack 顺序导致下移
-        self._set_image(path)
+        idx = self._anim_idx
+        frame = self._anim_pil_frames[idx][0]
+        self._ensure_canvas()
+        photo = self._anim_photo_for(idx)
+        cx = self._offset_x + (self._img_pil.size[0] * self._zoom) / 2.0
+        cy = self._offset_y + (self._img_pil.size[1] * self._zoom) / 2.0
+        if self._canvas_item is None:
+            self._canvas_item = self._preview_canvas.create_image(cx, cy, image=photo)
+        else:
+            self._preview_canvas.itemconfigure(self._canvas_item, image=photo)
+            self._preview_canvas.coords(self._canvas_item, cx, cy)
+        self._photo = photo
         self._anim_label.configure(text=f"第 {frame} 帧")
-        self._anim_idx += 1
-        self._anim_timer = self.after(100, self._show_anim_frame)
+        if nudge:
+            self._anim_idx += 1
+        # 60fps 播放（osu! 动画速率），比原 100ms 更流畅
+        self._anim_timer = self.after(16, self._show_anim_frame)
 
     def _clear_preview(self):
         """清理预览区，保留常驻 Canvas 及其中已设置的视图。"""
@@ -801,6 +865,9 @@ class ElementPanel(ttk.Frame):
         self._photo = None
         self._canvas_item = None
         self._pan_start = None
+        # 清除已缓存的动画帧（换元素后旧帧不应复用）
+        self._anim_pil_frames = None
+        self._anim_photo_cache = None
         for w in self.preview.winfo_children():
             if getattr(self, '_preview_canvas', None) is w:
                 continue
@@ -874,8 +941,25 @@ class ElementPanel(ttk.Frame):
         self._offset_y = (ch - h * self._zoom) / 2.0
 
     def _redraw(self):
-        """按当前缩放/偏移把图片重绘到画布上。"""
+        """按当前缩放/偏移把图片重绘到画布上。
+
+        缩放/平移时若正在播放动画，仅重算当前帧的 PhotoImage（带缓存），
+        动画循环照常继续，视图保持同步。
+        """
         if self._img_pil is None or not hasattr(self, '_preview_canvas'):
+            return
+        if self._anim_playing and getattr(self, '_anim_pil_frames', None):
+            idx = min(max(self._anim_idx, 0), len(self._anim_pil_frames) - 1)
+            self._photo = self._anim_photo_for(idx)
+            w, h = self._anim_pil_frames[idx][1].size
+            cx = self._offset_x + w * self._zoom / 2.0
+            cy = self._offset_y + h * self._zoom / 2.0
+            if self._canvas_item is None:
+                self._canvas_item = self._preview_canvas.create_image(
+                    cx, cy, image=self._photo)
+            else:
+                self._preview_canvas.itemconfigure(self._canvas_item, image=self._photo)
+                self._preview_canvas.coords(self._canvas_item, cx, cy)
             return
         w, h = self._img_pil.size
         dw = max(1, int(w * self._zoom))

@@ -188,7 +188,7 @@ python main.py
 - **General**：皮肤名称、作者、版本、动画帧率、光标行为等
 - **Colours**：所有颜色（连击色、滑条色、菜单色等）
 - **Fonts**：数字前缀（ScorePrefix、ComboPrefix）、间距（Overlap）
-- **Mania**：键数、列宽、判定线高度、长条身体样式、连击位置、倒置、每列 KeyImage/NoteImage 等
+- **Mania**：键数（1~18K）、列宽、判定线高度、长条身体样式、连击位置、倒置、每列 KeyImage/NoteImage 等
 
 ### 字段操作
 - 直接修改输入框，修改实时生效并刷新预览
@@ -244,7 +244,7 @@ python main.py
 ```
 e:\trae\osuskin\
 ├── main.py              入口（仅调用 gui.run()）
-├── gui.py               主界面（界面层，约 2798 行）
+├── gui.py               主界面（界面层，约 3150 行）
 ├── components.py        可复用 UI 组件（滚动容器、颜色工具、字体后缀）
 ├── theme.py             主题样式（配色表 + setup_style + DPI）
 ├── app_settings.py      应用设置持久化（settings.json 读写与迁移）
@@ -447,7 +447,7 @@ Command("命令名", "类型", "标签", "默认值", help="提示"),
 | `FONT_COMMANDS` | [Fonts] | 前缀、Overlap 间距 |
 | `MANIA_COMMANDS` | [Mania] | 键数、列宽、判定线、连击位置等 |
 | `MANIA_COLUMN_COMMANDS` | [Mania] 每列 | Colour{n1}、KeyImage{n0}、NoteImage{n0} 等 |
-| `NOTE_LAYOUT` | 字典 | 各键数对应的默认音符编号，如 `4: ["1","2","3","4"]` |
+| `NOTE_LAYOUT` | 字典 | 各键数对应的默认音符编号，覆盖 1~18K，如 `4: ["1","2","2","1"]` |
 
 ---
 
@@ -568,10 +568,10 @@ class SkinManager:
 | 1-50 | 导入 | 标准库、tkinter、PIL（HAS_PIL）、各内部模块 |
 | 51-339 | **`Form` 类** | 通用表单引擎 |
 | 340-487 | **`ManiaEditor` 类** | Mania 编辑器（每列表单 + reset） |
-| 488-1094 | **`ElementPanel` 类** | 元素管理面板（浏览/添加/删除/替换/预览） |
-| 1095-2494 | **`StagePreview` 类** | 游玩/暂停/结算/选歌预览（最大模块） |
-| 2495-3052 | **`App` 类** | 主窗口 |
-| 3053 | `run()` | 程序入口（enable_dpi_awareness → setup_style → App.mainloop） |
+| 488-1178 | **`ElementPanel` 类** | 元素管理面板（浏览/添加/删除/替换/预览） |
+| 1179-2583 | **`StagePreview` 类** | 游玩/暂停/结算/选歌预览（最大模块） |
+| 2584-3141 | **`App` 类** | 主窗口 |
+| 3142 | `run()` | 程序入口（enable_dpi_awareness → setup_style → App.mainloop） |
 
 > 行号随维护变动，以最新为准；下表用方法名定位更可靠。
 
